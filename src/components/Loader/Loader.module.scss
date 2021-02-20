@@ -1,0 +1,24 @@
+.loader {
+  --size: 60px;
+  --half-size: var(--size) / 2;
+
+  position: absolute;
+  top: calc(50% - var(--half-size));
+  left: calc(50% - var(--half-size));
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--accent-blue);
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  animation: donut-spin 1.2s linear infinite;
+}
+
+@keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

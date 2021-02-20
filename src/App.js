@@ -3,6 +3,7 @@ import React from 'react';
 import Lesson from './components/Lesson/Lesson';
 
 import styles from './App.module.scss';
+import Loader from './components/Loader/Loader';
 
 const GET_DATA = gql`
   query($oddOrEven: OddOrEven) {
@@ -33,27 +34,33 @@ function App() {
   }, []);
   return (
     <div className={styles.container}>
-      <h1 className={styles.oddOrEvenName}>
-        <span
-          onClick={() => {
-            oddOrEven === 'even' ? setOddOrEven('odd') : setOddOrEven('even');
-          }}>
-          {oddOrEven === 'even' ? 'Четная' : 'Нечетная'}
-        </span>{' '}
-        неделя
-      </h1>
-      <div className={styles.offerTimetable}>
-        {items?.map((obj) => (
-          <div>
-            <h2 className={styles.weekday}>{obj.weekday}</h2>
-            <div className={styles.offerLessonGroup}>
-              {obj?.timetables.map((item, index) => (
-                <Lesson key={index} time={item.time} lessions={item.lessions} />
-              ))}
-            </div>
+      {!loading ? (
+        <>
+          <h1 className={styles.oddOrEvenName}>
+            <span
+              onClick={() => {
+                oddOrEven === 'even' ? setOddOrEven('odd') : setOddOrEven('even');
+              }}>
+              {oddOrEven === 'even' ? 'Четная' : 'Нечетная'}
+            </span>{' '}
+            неделя
+          </h1>
+          <div className={styles.offerTimetable}>
+            {items?.map((obj) => (
+              <div>
+                <h2 className={styles.weekday}>{obj.weekday}</h2>
+                <div className={styles.offerLessonGroup}>
+                  {obj?.timetables.map((item, index) => (
+                    <Lesson key={index} time={item.time} lessions={item.lessions} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 }
