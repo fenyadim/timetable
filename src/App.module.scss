@@ -1,0 +1,64 @@
+.container {
+  padding: 0 200px;
+}
+
+.oddOrEvenName,
+span {
+  margin: 60px 0;
+  font-size: 2.769231rem; //36px
+  font-weight: 700;
+  text-align: center;
+}
+
+.oddOrEvenName {
+  span {
+    color: var(--accent-blue);
+  }
+}
+
+.weekday {
+  font-size: 1.384615rem; //18px
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.offerTimetable {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 335px);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+}
+
+.offerLessonGroup {
+  background-color: var(--second-blue);
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 756px) {
+  .container {
+    padding: 0 20px;
+  }
+  .oddOrEvenName,
+  span {
+    margin: 40px 0;
+    font-size: 2.076923rem; //28px
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .container {
+    padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .offerTimetable {
+    grid-template-columns: repeat(auto-fit, 300px);
+  }
+}

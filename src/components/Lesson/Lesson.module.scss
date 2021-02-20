@@ -1,0 +1,39 @@
+.offer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  > * {
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.lessionName {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.typeAndTeacher {
+  font-size: 0.923077rem; //12px
+}
+
+@media screen and (max-width: 370px) {
+  .offer {
+    padding: 7px;
+    > * {
+      margin-right: 7px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
