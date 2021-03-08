@@ -2,6 +2,21 @@
   padding: 0 200px;
 }
 
+.containerError {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .errorTitle {
+    font-size: 2.076923rem; //28px
+    font-weight: 700;
+  }
+}
+
 .oddOrEvenName,
 span {
   margin: 60px 0;
