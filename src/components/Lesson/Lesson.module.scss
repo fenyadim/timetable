@@ -1,13 +1,28 @@
-.offer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
+.wrapper {
+  border-radius: 5px;
   margin-bottom: 10px;
   background-color: #fff;
-  border-radius: 5px;
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.offer {
+  display: grid;
+  grid-template-columns: 40px auto 45px;
+  align-items: center;
+  -ms-wrap-flow: both;
+  //align-items: center;
+  //justify-content: space-between;
+  padding: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:not(:only-of-type) {
+    border-bottom: 1px solid #c5e0ff;
+    &:last-child {
+      border-bottom: 0;
+    }
   }
   > * {
     margin-right: 15px;
@@ -15,6 +30,11 @@
       margin-right: 0;
     }
   }
+}
+
+.cabinet {
+  word-break: break-all;
+  justify-self: center;
 }
 
 .lessionName {

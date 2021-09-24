@@ -6,26 +6,26 @@ import Loader from './components/Loader/Loader';
 import styles from './App.module.scss';
 
 const GET_DATA = gql`
-  query($oddOrEven: OddOrEven) {
-    calendars(where: { oddOrEvenList: $oddOrEven }) {
-      weekday
-      timetables {
-        time
-        lessions {
-          name
-          type
-          teacher
-          cabinet
+    query($oddOrEven: OddOrEven) {
+        timetables(where: {oddOrEven: $oddOrEven}, orderBy: updatedAt_ASC) {
+            day
+            times {
+                time
+                lessons {
+                    name
+                    teacher
+                    type
+                    number
+                }
+            }
         }
-      }
     }
-  }
 `;
 
 function App() {
   const [oddOrEven, setOddOrEven] = React.useState('');
-  const { loading, error, data } = useQuery(GET_DATA, { variables: { oddOrEven } });
-  const items = data?.calendars;
+  const {loading, error, data} = useQuery(GET_DATA, {variables: {oddOrEven}});
+  const items = data?.timetables;
 
   React.useEffect(() => {
     const nowData = new Date();
@@ -35,8 +35,8 @@ function App() {
   }, []);
 
   const fetchLessionsData = (obj) => {
-    return obj?.timetables.map((item, index) => (
-      <Lesson key={index} time={item.time} lessions={item.lessions} />
+    return obj?.times.map((item, index) => (
+      <Lesson key={index} data={item}/>
     ));
   };
 
@@ -55,16 +55,16 @@ function App() {
               неделя
             </h1>
             <div className={styles.offerTimetable}>
-              {items?.map((obj) => (
-                <div>
-                  <h2 className={styles.weekday}>{obj.weekday}</h2>
+              {items?.map((obj, index) => (
+                <div key={index}>
+                  <h2 className={styles.weekday}>{obj.day}</h2>
                   <div className={styles.offerLessonGroup}>{fetchLessionsData(obj)}</div>
                 </div>
               ))}
             </div>
           </>
         ) : (
-          <Loader />
+          <Loader/>
         )
       ) : (
         <h1 className={styles.errorTitle}>😓 Что-то пошло не так! 🤥</h1>
